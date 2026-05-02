@@ -23,32 +23,40 @@
         #intro {
         position: relative;
         height: 100vh;
-        width: 100%;
+        width: 100vw;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        color: white;
-        text-align: center;
-        background-color: #000; /* Video yüklenene kadar beyaz değil, siyah görünsün */
+        /* ÖNEMLİ: Videonun kenar rengiyle (koyu mavi/siyah) arka planı eşliyoruz */
+        background-color: #0b141a; 
         }
 
         #bgVideo {
         position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Videoyu ekranı tam kaplayacak şekilde ayarlar */
-        z-index: 1; /* Videoyu 1. kata aldık */
-        filter: brightness(50%); /* %45 yerine %50 yaparak biraz daha dengeli bir karanlık sağladık */
+        /* 'contain' özelliği videoyu asla kırpmaz, tamamını ekrana sığdırır */
+        object-fit: contain; 
+        z-index: 1;
+        /* Masaüstünde %50, mobilde kuşların netliği için %65 parlaklık */
+        filter: brightness(60%); 
+        }
+
+        @media (max-width: 768px) {
+        #bgVideo {
+        /* Mobilde videonun dikeyde çok küçük kalmaması için hafif ölçeklendirme */
+        width: 100%;
+        height: auto;
+        }
         }
 
         .intro-content {
         position: relative;
-        z-index: 2; /* Yazıları ve butonu kesinlikle videonun önüne (2. kata) çıkardık */
+          z-index: 2; /* Yazılar videonun üzerinde kalmaya devam eder */
         }
 
+        
         /* 2. DÜĞÜN KARTI & PAPATYA FONU */
         #welcome {
             padding: 100px 15px;
