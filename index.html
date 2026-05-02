@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ebru & Mahir Düğün Davetiyesi</title>
     
-    <!-- Modern Fontlar ve Animasyon Kütüphanesi -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
@@ -24,20 +23,19 @@
             position: relative; height: 100vh; width: 100vw;
             display: flex; align-items: center; justify-content: center;
             overflow: hidden; color: white; text-align: center;
-            background-color: #0b141a; /* Video kenarlarıyla uyumlu koyu zemin */
+            background-color: #0b141a;
         }
 
         #bgVideo {
             position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
-            object-fit: contain; /* Kuşların uçtuğu alanı asla kırpmaz */
+            object-fit: contain;
             z-index: 1;
             filter: brightness(65%);
         }
 
         .intro-content { position: relative; z-index: 2; padding: 0 20px; }
 
-        /* İsimlerdeki Beyaz Glow Efekti */
         .intro-content h1 { 
             font-family: 'Great Vibes', cursive; 
             font-size: clamp(4rem, 18vw, 9rem); 
@@ -46,14 +44,12 @@
             font-weight: 400;
         }
 
-        /* Geniş Karakter Aralıklı Alt Başlık */
         .intro-content p { 
             font-size: 1.1rem; letter-spacing: 8px; 
             margin-top: -10px; text-transform: uppercase;
             opacity: 0.9;
         }
 
-        /* Şeffaf Pill Buton */
         .btn-action {
             background: rgba(255, 255, 255, 0.1); border: 2px solid #fff; color: #fff;
             padding: 16px 50px; border-radius: 60px; font-size: 1.1rem; font-weight: 600;
@@ -62,7 +58,6 @@
         }
         .btn-action:hover { background: #fff; color: #0b141a; transform: scale(1.05); }
 
-        /* MÜZİK KONTROL BUTONU */
         #musicToggle {
             position: fixed; bottom: 20px; right: 20px; z-index: 100;
             background: rgba(0, 0, 0, 0.5); color: white; width: 50px; height: 50px;
@@ -84,7 +79,9 @@
             backdrop-filter: blur(12px); text-align: center; box-sizing: border-box;
         }
 
-        /* ASİMETRİK SAYAÇ ANİMASYONU */
+        /* Başlık Mobilde Taşıyorsa Burası Düzenler */
+        #welcome h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: #333; margin-bottom: 20px; }
+
         .countdown-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 40px; }
         .countdown-box {
             background: white; width: 90px; height: 90px;
@@ -110,9 +107,43 @@
 
         .map-wrapper { max-width: 1000px; margin: 40px auto; border-radius: 40px; overflow: hidden; height: 450px; box-shadow: var(--soft-shadow); }
 
-        /* WHATSAPP */
-        .guestbook { background: white; padding: 40px 20px; border-radius: 40px; box-shadow: var(--soft-shadow); max-width: 600px; margin: 40px auto; text-align: center; }
-        .btn-whatsapp { background: var(--whatsapp-yesil); color: white; padding: 18px 25px; border-radius: 50px; width: 95%; max-width: 320px; text-decoration: none; display: inline-block; font-weight: 600; margin-top: 15px; }
+        /* 5. WHATSAPP ANI KÖŞESİ - MOBİL ODAKLI DÜZENLEME */
+        .guestbook { 
+            background: white; 
+            padding: 40px 20px; 
+            border-radius: 40px; 
+            box-shadow: var(--soft-shadow); 
+            max-width: 600px; 
+            margin: 40px auto; 
+            text-align: center;
+            box-sizing: border-box; 
+        }
+
+        .btn-whatsapp { 
+            background: var(--whatsapp-yesil); 
+            color: white; 
+            padding: 18px 10px; 
+            border-radius: 50px; 
+            width: 90%; /* Mobilde sığması için %95 yerine %90 */
+            max-width: 320px; 
+            text-decoration: none; 
+            display: block; /* Inline-block yerine Block yaparak merkeze aldık */
+            margin: 15px auto 0 auto; /* Otomatik yan boşluklar ile ortaladık */
+            font-weight: 600; 
+            box-sizing: border-box;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        /* MOBİL ÖZEL AYARLAR */
+        @media (max-width: 600px) {
+            #welcome h2 {
+                font-size: 2.1rem; /* Uzun kelimelerin sığması için küçültüldü */
+                padding: 0 10px;
+                line-height: 1.2;
+            }
+            .welcome-card { padding: 40px 15px; }
+            .guestbook { padding: 30px 10px; } /* Mobilde butona daha çok alan kalsın */
+        }
 
         /* DÜŞEN YAPRAKLAR */
         .petal { position: fixed; background: rgba(255, 255, 255, 0.9); border-radius: 0 50% 0 50%; z-index: 10; pointer-events: none; animation: fall linear infinite; }
@@ -121,10 +152,8 @@
 </head>
 <body>
 
-    <!-- MÜZİK KONTROLÜ -->
     <div id="musicToggle" onclick="toggleMusic()">🔊</div>
 
-    <!-- 1. INTRO -->
     <div id="intro">
         <video autoplay muted loop playsinline id="bgVideo">
             <source src="dosya/intro_video.mp4" type="video/mp4">
@@ -136,10 +165,9 @@
         </div>
     </div>
 
-    <!-- 2. BİLGİLER -->
     <div id="welcome">
         <div class="welcome-card" data-aos="fade-up">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.8rem; color: #333;">Mutluluğumuza Davetlisiniz</h2>
+            <h2 style="font-family: 'Playfair Display', serif; color: #333;">Mutluluğumuza Davetlisiniz</h2>
             <p style="font-size: 1.2rem; font-style: italic; color: #555; line-height: 1.8;">
                 "Aşkın en saf halini yaşadığımız bu masalsı yolculukta, <br>
                 el ele 'Evet' derken sizleri de yanımızda görmekten mutluluk duyarız."
@@ -157,7 +185,6 @@
         </div>
     </div>
 
-    <!-- 3. GALERİ -->
     <section class="gallery">
         <div class="gallery-item" data-aos="fade-down"><img src="dosya/resim1.jpg" alt="1"></div>
         <div class="gallery-item" data-aos="fade-left" data-aos-delay="200"><img src="dosya/resim2.jpg" alt="2"></div>
@@ -165,14 +192,12 @@
         <div class="gallery-item" data-aos="fade-up" data-aos-delay="600"><img src="dosya/resim4.jpg" alt="4"></div>
     </section>
 
-    <!-- 4. HARİTA -->
     <section style="padding: 0 15px;" data-aos="zoom-in">
         <div class="map-wrapper">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.4295943415937!2d34.73099154932517!3d38.64351061888225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152a6fd1863b0d63%3A0x6c183b1762b16d44!2zS3Jpc3RhbCBUb3BsYW50xLEgdmUgRMO8xJ_DvG4gU2Fsb25sYXLEsQ!5e0!3m2!1str!2str!4v1777679041598" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
-    <!-- 5. WHATSAPP -->
     <section style="padding: 40px 15px; background: #fdfdfd;">
         <div class="guestbook" data-aos="fade-up">
             <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 10px;">Anı Köşesi</h2>
@@ -185,7 +210,6 @@
 
     <footer style="text-align: center; padding: 40px; color: #bbb; font-size: 0.85rem;">Ebru & Mahir • 01.08.2026</footer>
 
-    <!-- Scriptler -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1200, once: true });
