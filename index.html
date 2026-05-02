@@ -79,16 +79,41 @@
 
         /* 5. WHATSAPP ANI KÖŞESİ */
         .guestbook { 
-            background: white; padding: 60px 30px; border-radius: 40px; 
-            box-shadow: var(--soft-shadow); max-width: 650px; margin: 40px auto; text-align: center;
+        background: white; 
+        padding: 30px 15px; /* Mobilde iç boşluğu daralttık */
+        border-radius: 40px; 
+        box-shadow: var(--soft-shadow); 
+        max-width: 600px; 
+        margin: 40px auto; 
+        text-align: center;
+        box-sizing: border-box; /* Taşmayı engelleyen sihirli komut */
         }
-        .btn-whatsapp { 
-            background: var(--whatsapp-yesil); color: white; border: none; padding: 20px 40px; border-radius: 50px; 
-            width: 100%; max-width: 400px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: 0.3s; 
-            text-decoration: none; display: inline-block; margin-top: 20px; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.2);
-        }
-        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(37, 211, 102, 0.3); filter: brightness(1.1); }
 
+        .btn-whatsapp { 
+        background: var(--whatsapp-yesil); 
+        color: white; 
+        padding: 18px 20px; 
+        border-radius: 50px; 
+        width: 95%; /* Ekran genişliğinin %95'ini kullanır, dışına çıkmaz */
+        max-width: 320px; /* Çok büyük ekranlarda devasa olmasın diye sınır koyduk */
+        font-size: 0.95rem; 
+        font-weight: 600; 
+        cursor: pointer; 
+        transition: 0.3s; 
+        text-decoration: none; 
+        display: inline-block; 
+        margin-top: 15px; 
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.2);
+        box-sizing: border-box;
+        }
+
+        @media (max-width: 480px) {
+        .btn-whatsapp {
+        font-size: 0.85rem; /* Çok küçük telefonlar için yazıyı biraz daha küçülttük */
+        padding: 15px 15px;
+        }
+        }
+        
         /* ARKA PLAN YAPRAK ANİMASYONU */
         .petal { position: fixed; background: rgba(255, 255, 255, 0.9); border-radius: 0 50% 0 50%; z-index: 10; pointer-events: none; animation: fall linear infinite; }
         @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
@@ -154,24 +179,23 @@
     </section>
 
     <!-- ANI KÖŞESİ (WHATSAPP) -->
-    <section style="padding: 60px 15px; background: #fdfdfd;">
-        <div class="guestbook" data-aos="fade-up">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 10px;">Anı Köşesi</h2>
-            <p style="color: #777; line-height: 1.6; margin-bottom: 30px;">
-                Bize olan güzel dileklerinizi, o güne ait fotoğraf ve videolarınızı <br> 
-                aşağıdaki butona tıklayarak WhatsApp üzerinden iletebilirsiniz. 🌼
-            </p>
-            
-            <!-- TELEFON NUMARASINI BURAYA YAZIN (Örn: 905321234567) -->
-            <a href="https://wa.me/905066091992?text=Merhaba Ebru ve Mahir! ✨ Sizin için bir anı paylaşmak istedik:" 
-               target="_blank" class="btn-whatsapp">
-                📸 WHATSAPP İLE ANI GÖNDER
-            </a>
-            
-            <p style="color: #aaa; font-size: 0.8rem; margin-top: 20px;">
-                (Dosya boyutu sınırı yoktur, dilediğinizce paylaşabilirsiniz 😊)
-            </p>
-        </div>
+    <section style="padding: 40px 15px; background: #fdfdfd;">
+    <div class="guestbook" data-aos="fade-up">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 10px;">Anı Köşesi</h2>
+        <p style="color: #777; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px;">
+            En mutlu günümüze ait anılarınızı <br> 
+            WhatsApp ile bize iletebilirsiniz. 🌼
+        </p>
+        
+        <a href="https://wa.me/905066091992?text=Merhaba Ebru ve Mahir! ✨ Sizin için bir anı paylaşmak istedik:" 
+           target="_blank" class="btn-whatsapp">
+            🟢 WHATSAPP İLE GÖNDER
+        </a>
+        
+        <p style="color: #bbb; font-size: 0.75rem; margin-top: 20px;">
+            (Fotoğraf ve video göndermek için tıklayın 😊)
+        </p>
+    </div>
     </section>
 
     <footer style="text-align: center; padding: 60px; color: #bbb; font-size: 0.9rem;">Ebru & Mahir • 01.08.2026</footer>
