@@ -19,167 +19,126 @@
 
         body, html { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; overflow-x: hidden; background-color: #fff; }
 
-        /* 1. INTRO VİDEO */
+        /* 1. INTRO - GÖRSELDEKİ TASARIM */
         #intro {
-        position: relative;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        /* ÖNEMLİ: Videonun kenar rengiyle (koyu mavi/siyah) arka planı eşliyoruz */
-        background-color: #0b141a; 
+            position: relative; height: 100vh; width: 100vw;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; color: white; text-align: center;
+            background-color: #0b141a; 
         }
 
         #bgVideo {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        /* 'contain' özelliği videoyu asla kırpmaz, tamamını ekrana sığdırır */
-        object-fit: contain; 
-        z-index: 1;
-        /* Masaüstünde %50, mobilde kuşların netliği için %65 parlaklık */
-        filter: brightness(60%); 
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: contain; /* Kuşların uçtuğu alan kesilmez */
+            z-index: 1;
+            filter: brightness(65%);
         }
 
-        @media (max-width: 768px) {
-        #bgVideo {
-        /* Mobilde videonun dikeyde çok küçük kalmaması için hafif ölçeklendirme */
-        width: 100%;
-        height: auto;
-        }
+        .intro-content { position: relative; z-index: 2; padding: 0 20px; }
+
+        .intro-content h1 { 
+            font-family: 'Great Vibes', cursive; 
+            font-size: clamp(4rem, 18vw, 9rem); 
+            margin: 0; color: #fff;
+            text-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 30px rgba(255,255,255,0.4);
         }
 
-        .intro-content {
-        position: relative;
-          z-index: 2; /* Yazılar videonun üzerinde kalmaya devam eder */
+        .intro-content p { 
+            font-size: 1.1rem; letter-spacing: 8px; 
+            margin-top: -10px; text-transform: uppercase;
+            opacity: 0.9;
         }
 
-        
-        /* 2. DÜĞÜN KARTI & PAPATYA FONU */
+        .btn-action {
+            background: rgba(255, 255, 255, 0.1); border: 2px solid #fff; color: #fff;
+            padding: 16px 50px; border-radius: 60px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: 0.4s; margin-top: 40px; text-transform: uppercase;
+            letter-spacing: 2px; backdrop-filter: blur(5px);
+        }
+        .btn-action:hover { background: #fff; color: #0b141a; }
+
+        /* MÜZİK KONTROL BUTONU (Yüzen Buton) */
+        #musicToggle {
+            position: fixed; bottom: 20px; right: 20px; z-index: 100;
+            background: rgba(0, 0, 0, 0.5); color: white; width: 50px; height: 50px;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.3);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; backdrop-filter: blur(5px); font-size: 1.5rem;
+            transition: 0.3s; visibility: hidden; /* Sesi açana kadar gizli */
+        }
+
+        /* 2. BİLGİ KARTI */
         #welcome {
-            padding: 100px 15px;
-            background-image: url('./dosya/papatya.jpg');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
+            padding: 100px 15px; background-image: url('dosya/papatya.jpg');
+            background-attachment: fixed; background-size: cover; background-position: center;
             display: flex; justify-content: center;
         }
         .welcome-card {
-            background: var(--glass);
-            max-width: 850px; width: 100%; padding: 60px 25px;
+            background: var(--glass); max-width: 850px; width: 100%; padding: 60px 25px;
             border-radius: 60px 15px 60px 15px; box-shadow: var(--soft-shadow);
-            backdrop-filter: blur(12px); text-align: center;
+            backdrop-filter: blur(12px); text-align: center; box-sizing: border-box;
         }
 
-        /* YAPRAK FORMUNDA SAYAÇ */
         .countdown-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 40px; }
         .countdown-box {
-            background: white; width: 100px; height: 100px;
+            background: white; width: 90px; height: 90px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border-radius: 50% 50% 50% 0;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-            animation: floating 3s infinite ease-in-out;
-            border: 1px solid #f9f9f9;
+            border-radius: 50% 50% 50% 0; box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            animation: floating 3s infinite ease-in-out; border: 1px solid #f9f9f9;
         }
-        .countdown-box:nth-child(even) { border-radius: 50% 50% 0 50%; animation-delay: 0.5s; }
-        .countdown-box span { font-size: 2.2rem; font-weight: 700; color: var(--papatya-sari); line-height: 1; }
-        .countdown-box label { font-size: 0.75rem; text-transform: uppercase; color: #888; font-weight: 600; }
+        .countdown-box:nth-child(even) { border-radius: 50% 50% 0 50%; }
+        .countdown-box span { font-size: 1.8rem; font-weight: 700; color: var(--papatya-sari); line-height: 1; }
+        .countdown-box label { font-size: 0.7rem; color: #888; text-transform: uppercase; }
 
         @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        /* 3. GALERİ (4 FARKLI ANİMASYON) */
-        .gallery { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; padding: 60px 15px; max-width: 1200px; margin: auto;
-        }
+        /* GALERİ */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 60px 15px; max-width: 1200px; margin: auto; }
         .gallery-item { overflow: hidden; border-radius: 30px; border: 10px solid white; box-shadow: var(--soft-shadow); }
         .gallery img { width: 100%; height: 400px; object-fit: cover; transition: 0.5s; }
-        .gallery img:hover { transform: scale(1.08); }
+        .gallery img:hover { transform: scale(1.05); }
 
-        /* 4. HARİTA */
-        .map-wrapper { max-width: 1000px; margin: 40px auto; border-radius: 40px; overflow: hidden; box-shadow: var(--soft-shadow); height: 500px; }
+        .map-wrapper { max-width: 1000px; margin: 40px auto; border-radius: 40px; overflow: hidden; height: 450px; box-shadow: var(--soft-shadow); }
 
-        /* 5. WHATSAPP ANI KÖŞESİ */
-        .guestbook { 
-        background: white; 
-        padding: 30px 15px; /* Mobilde iç boşluğu daralttık */
-        border-radius: 40px; 
-        box-shadow: var(--soft-shadow); 
-        max-width: 600px; 
-        margin: 40px auto; 
-        text-align: center;
-        box-sizing: border-box; /* Taşmayı engelleyen sihirli komut */
-        }
+        /* WHATSAPP ANI KÖŞESİ */
+        .guestbook { background: white; padding: 40px 20px; border-radius: 40px; box-shadow: var(--soft-shadow); max-width: 600px; margin: 40px auto; text-align: center; }
+        .btn-whatsapp { background: var(--whatsapp-yesil); color: white; padding: 18px 25px; border-radius: 50px; width: 95%; max-width: 320px; text-decoration: none; display: inline-block; font-weight: 600; margin-top: 15px; }
 
-        .btn-whatsapp { 
-        background: var(--whatsapp-yesil); 
-        color: white; 
-        padding: 18px 20px; 
-        border-radius: 50px; 
-        width: 95%; /* Ekran genişliğinin %95'ini kullanır, dışına çıkmaz */
-        max-width: 320px; /* Çok büyük ekranlarda devasa olmasın diye sınır koyduk */
-        font-size: 0.95rem; 
-        font-weight: 600; 
-        cursor: pointer; 
-        transition: 0.3s; 
-        text-decoration: none; 
-        display: inline-block; 
-        margin-top: 15px; 
-        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.2);
-        box-sizing: border-box;
-        }
-
-        @media (max-width: 480px) {
-        .btn-whatsapp {
-        font-size: 0.85rem; /* Çok küçük telefonlar için yazıyı biraz daha küçülttük */
-        padding: 15px 15px;
-        }
-        }
-        
-        /* ARKA PLAN YAPRAK ANİMASYONU */
+        /* PAPATYA YAPRAĞI ANİMASYONU */
         .petal { position: fixed; background: rgba(255, 255, 255, 0.9); border-radius: 0 50% 0 50%; z-index: 10; pointer-events: none; animation: fall linear infinite; }
         @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
-
-        @media (max-width: 600px) {
-            .intro-content h1 { font-size: 3.5rem; }
-            .countdown-box { width: 75px; height: 75px; }
-            .countdown-box span { font-size: 1.5rem; }
-            .map-wrapper { height: 350px; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- INTRO -->
+    <!-- MÜZİK KONTROL BUTONU -->
+    <div id="musicToggle" onclick="toggleMusic()">🔊</div>
+
+    <!-- 1. INTRO -->
     <div id="intro">
-    <video autoplay muted loop playsinline id="bgVideo">
-        <source src="dosya/intro_video.mp4" type="video/mp4">
-    </video>
-    <div class="intro-content" data-aos="zoom-out" data-aos-duration="2000">
-        <h1>Ebru & Mahir</h1>
-        <p>BİR ÖMÜR BOYU BERABER</p>
-        <button class="btn-whatsapp" style="width: auto; background: transparent; border: 2px solid white; margin-top: 25px;" onclick="document.getElementById('welcome').scrollIntoView();">
-            DAVETİYEYİ AÇ
-        </button>
-    </div>
+        <video autoplay muted loop playsinline id="bgVideo">
+            <source src="dosya/intro_video.mp4" type="video/mp4">
+        </video>
+        <div class="intro-content" data-aos="zoom-out" data-aos-duration="2500">
+            <h1>Ebru & Mahir</h1>
+            <p>BİR ÖMÜR BOYU BERABER</p>
+            <button class="btn-action" onclick="sesiAcVeKaydir()">Davetiyeyi Aç</button>
+        </div>
     </div>
 
-    <!-- BİLGİLER & SAYAÇ -->
+    <!-- 2. BİLGİLER -->
     <div id="welcome">
         <div class="welcome-card" data-aos="fade-up">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.8rem;">Mutluluğumuza Davetlisiniz</h2>
-            <p style="font-size: 1.3rem; font-style: italic; line-height: 2; color: #555;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.8rem; color: #333;">Mutluluğumuza Davetlisiniz</h2>
+            <p style="font-size: 1.2rem; font-style: italic; color: #555;">
                 "Aşkın en saf halini yaşadığımız bu masalsı yolculukta, <br>
                 el ele 'Evet' derken sizleri de yanımızda görmekten mutluluk duyarız."
             </p>
-            
-            <div style="margin: 40px 0; font-size: 1.25rem; color: #333; font-weight: 500;">
+            <div style="margin: 30px 0; font-size: 1.15rem; font-weight: 500; color: #222;">
                 <p>🏰 Kristal Toplantı ve Düğün Salonları</p>
                 <p>📅 1 Ağustos 2026, Cumartesi • ⏰ 19:00</p>
             </div>
-
             <div class="countdown-container">
                 <div class="countdown-box"><span id="days">00</span><label>Gün</label></div>
                 <div class="countdown-box"><span id="hours">00</span><label>Saat</label></div>
@@ -189,49 +148,58 @@
         </div>
     </div>
 
-    <!-- GALERİ (4 FARKLI ANİMASYON) -->
+    <!-- 3. GALERİ -->
     <section class="gallery">
-        <div class="gallery-item" data-aos="fade-right"><img src="./dosya/resim1.jpg" alt="1"></div>
-        <div class="gallery-item" data-aos="fade-left" data-aos-delay="200"><img src="./dosya/resim2.jpg" alt="2"></div>
-        <div class="gallery-item" data-aos="zoom-in-up" data-aos-delay="400"><img src="./dosya/resim3.jpg" alt="3"></div>
-        <div class="gallery-item" data-aos="zoom-in-down" data-aos-delay="600"><img src="./dosya/resim4.jpg" alt="4"></div>
+        <div class="gallery-item" data-aos="fade-up"><img src="dosya/resim1.jpg" alt="1"></div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="200"><img src="dosya/resim2.jpg" alt="2"></div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="400"><img src="dosya/resim3.jpg" alt="3"></div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="600"><img src="dosya/resim4.jpg" alt="4"></div>
     </section>
 
-    <!-- HARİTA -->
+    <!-- 4. HARİTA -->
     <section style="padding: 0 15px;" data-aos="zoom-in">
         <div class="map-wrapper">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.4295943415937!2d34.73099154932517!3d38.64351061888225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152a6fd1863b0d63%3A0x6c183b1762b16d44!2zS3Jpc3RhbCBUb3BsYW50xLEgdmUgRMO8xJ_DvG4gU2Fsb25sYXLEsQ!5e0!3m2!1str!2str!4v1777679041598" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
-    <!-- ANI KÖŞESİ (WHATSAPP) -->
+    <!-- 5. WHATSAPP -->
     <section style="padding: 40px 15px; background: #fdfdfd;">
-    <div class="guestbook" data-aos="fade-up">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 10px;">Anı Köşesi</h2>
-        <p style="color: #777; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px;">
-            En mutlu günümüze ait anılarınızı <br> 
-            WhatsApp ile bize iletebilirsiniz. 🌼
-        </p>
-        
-        <a href="https://wa.me/905066091992?text=Merhaba Ebru ve Mahir! ✨ Sizin için bir anı paylaşmak istedik:" 
-           target="_blank" class="btn-whatsapp">
-            🟢 WHATSAPP İLE GÖNDER
-        </a>
-        
-        <p style="color: #bbb; font-size: 0.75rem; margin-top: 20px;">
-            (Fotoğraf ve video göndermek için tıklayın 😊)
-        </p>
-    </div>
+        <div class="guestbook" data-aos="fade-up">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 10px;">Anı Köşesi</h2>
+            <p style="color: #777;">En mutlu günümüze ait anılarınızı bize iletebilirsiniz. 🌼</p>
+            <a href="https://wa.me/905066091992?text=Merhaba Ebru ve Mahir! ✨ Sizin için bir anı paylaşmak istedik:" target="_blank" class="btn-whatsapp">
+                📸 WHATSAPP İLE GÖNDER
+            </a>
+        </div>
     </section>
 
-    <footer style="text-align: center; padding: 60px; color: #bbb; font-size: 0.9rem;">Ebru & Mahir • 01.08.2026</footer>
+    <footer style="text-align: center; padding: 40px; color: #bbb; font-size: 0.85rem;">Ebru & Mahir • 01.08.2026</footer>
 
     <!-- Scriptler -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1200, once: true });
 
-        // CANLI GERİ SAYIM
+        const video = document.getElementById("bgVideo");
+        const musicToggle = document.getElementById("musicToggle");
+
+        function sesiAcVeKaydir() {
+            video.muted = false;
+            musicToggle.style.visibility = "visible"; // Ses açıldığında kontrol butonu görünsün
+            document.getElementById('welcome').scrollIntoView();
+        }
+
+        function toggleMusic() {
+            if (video.muted) {
+                video.muted = false;
+                musicToggle.innerText = "🔊";
+            } else {
+                video.muted = true;
+                musicToggle.innerText = "🔇";
+            }
+        }
+
         const weddingDate = new Date("August 1, 2026 19:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
@@ -242,7 +210,6 @@
             document.getElementById("seconds").textContent = Math.floor((dist % 60000) / 1000);
         }, 1000);
 
-        // PAPATYA YAPRAKLARI
         setInterval(() => {
             const petal = document.createElement('div');
             petal.classList.add('petal');
