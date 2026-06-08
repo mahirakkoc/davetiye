@@ -124,11 +124,11 @@
             color: white; 
             padding: 18px 10px; 
             border-radius: 50px; 
-            width: 90%; /* Mobilde sığması için %95 yerine %90 */
+            width: 90%; 
             max-width: 320px; 
             text-decoration: none; 
-            display: block; /* Inline-block yerine Block yaparak merkeze aldık */
-            margin: 15px auto 0 auto; /* Otomatik yan boşluklar ile ortaladık */
+            display: block; 
+            margin: 15px auto 0 auto; 
             font-weight: 600; 
             box-sizing: border-box;
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.2);
@@ -137,12 +137,12 @@
         /* MOBİL ÖZEL AYARLAR */
         @media (max-width: 600px) {
             #welcome h2 {
-                font-size: 2.1rem; /* Uzun kelimelerin sığması için küçültüldü */
+                font-size: 2.1rem; 
                 padding: 0 10px;
                 line-height: 1.2;
             }
             .welcome-card { padding: 40px 15px; }
-            .guestbook { padding: 30px 10px; } /* Mobilde butona daha çok alan kalsın */
+            .guestbook { padding: 30px 10px; } 
         }
 
         /* DÜŞEN YAPRAKLAR */
@@ -247,7 +247,7 @@
 
         setInterval(() => {
             const petal = document.createElement('div');
-            const.classList.add('petal');
+            petal.classList.add('petal');
             petal.style.left = Math.random() * 100 + 'vw';
             petal.style.width = Math.random() * 12 + 10 + 'px';
             petal.style.height = petal.style.width;
